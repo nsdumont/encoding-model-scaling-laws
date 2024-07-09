@@ -28,5 +28,5 @@ def get_topics(text, model_type="wiki", top_n=1):
     topics = []
     for topic in topic_id:
         topics.append(model.get_topic(topic)[0])
-    dict = dict(topics)
-    return dict
+    topic_dict = dict(topics)
+    return topic_dict
