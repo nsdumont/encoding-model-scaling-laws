@@ -2,8 +2,8 @@ import os
 import subprocess
 import cortex
 
-pycortex_download_script = "ds003020-2.2.0.sh"
-pycortex_dir = 'pycortex-db'
+pycortex_download_script = "../ds003020-2.2.0.sh"
+pycortex_dir = '../pycortex-db'
 
 # Select which subjects to download (full list is ['UTS01', 'UTS02','UTS03','UTS04','UTS05','UTS06','UTS07','UTS08'] ) 
 subjects = ['UTS01', 'UTS02','UTS03']

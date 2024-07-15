@@ -3,4 +3,7 @@
 data/
 working/
 pycortex-db/
+batched_embeddings/
+models/
+embeddings/
 .DS_Store

@@ -3,30 +3,41 @@ from bertopic import BERTopic
 
 test_text = "This is a recipe"
 
-def get_topics(text, model_type="wiki", top_n=1):
+def init_model(model_type="wiki"):
     """
-    Get the topic(s) for a given text using a pre-trained BERTopic model.
+    Initialize a pre-trained BERTopic model.
 
     Parameters:
-    text (str): The input text for which the topic(s) need to be identified.
     model_type (str, optional): The type of pre-trained BERTopic model to use. Default is "wiki".
                                Possible values: "wiki" (Wikipedia), "arxiv" (ArXiv).
-    top_n (int, optional): The number of top topics to return. Default is 1.
 
     Returns:
-    dict: A dictionary containing the identified topic(s) and their probabilities.
+    BERTopic: A pre-trained BERTopic model.
 
     Example:
-    >>> get_topic("This is a sample text.")
-    {'topic1': 0.85}
+    >>> model = init_model("wiki")
     """
     if model_type == "wiki":
         model = BERTopic.load("MaartenGr/BERTopic_Wikipedia")
     elif model_type == "arxiv":
         model = BERTopic.load("MaartenGr/BERTopic_Arxiv")
+    return model
+
+def get_topics(text, model, top_n=1):
+    """
+    Retrieves the top N topics for the given text using the specified model.
+
+    Parameters:
+        text (str): The input text for which topics need to be retrieved.
+        model: The topic model used for topic extraction.
+        top_n (int): The number of top topics to retrieve. Default is 1.
+
+    Returns:
+        dict: A dictionary containing the top topics and their probabilities.
+    """
+
     topic_id, prob = model.find_topics(text, top_n=top_n)
     topics = []
-    for topic in topic_id:
-        topics.append(model.get_topic(topic)[0])
-    topic_dict = dict(topics)
+    topic_dict = dict({'topic_id': topic_id,'probability': prob})
     return topic_dict
+
