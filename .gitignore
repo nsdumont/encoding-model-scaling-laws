@@ -4,6 +4,6 @@ data/
 working/
 pycortex-db/
 batched_embeddings/
-models/
+pretrained_chunk_models/
 embeddings/
 .DS_Store
